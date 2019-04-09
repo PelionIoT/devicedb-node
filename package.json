@@ -1,0 +1,20 @@
+{
+  "name": "devicedb-node",
+  "description": "",
+  "version": "0.0.1",
+  "contributors": [
+    "Jordan Rife <jrife0@gmail.com>"
+  ],
+  "dependencies": {
+    "request": "2.60.0",
+    "split": "1.0.0",
+    "minimist": "1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "2.3.0",
+    "expect.js": "0.3.1",
+    "should": "7.1.0",
+    "should-promised": "0.3.1"
+  },
+  "license": "Apache-2.0"
+}
