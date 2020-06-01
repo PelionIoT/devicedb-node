@@ -18,6 +18,7 @@
  */
 
 const https = require('https')
+const http = require('http')
 const request = require('request')
 const split = require('split')
 const url = require('url')
@@ -25,14 +26,22 @@ const MAX_SOCKETS = 4
 
 class DeviceDB {
     constructor(options) {
+        var self = this;
         this.serverURI = options.uri
         this.https = options.https
-        this.agent = options.agent = new https.Agent({
-            keepAlive: true,
-            maxSockets: MAX_SOCKETS,
-            checkServerIdentity: function(servername, cert) {
-            }
-        })
+        if(this.https) {
+            self.agent = options.agent = new https.Agent({
+                keepAlive: true,
+                maxSockets: MAX_SOCKETS,
+                checkServerIdentity: function(servername, cert) {
+                }
+            })
+        } else {
+            self.agent = options.agent = new http.Agent({
+                keepAlive: true,
+                maxSockets: MAX_SOCKETS
+            })
+        }
         
         this.lww = new bucket('lww', options)
         this.default = new bucket('default', options)
